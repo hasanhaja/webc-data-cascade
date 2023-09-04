@@ -1,0 +1,37 @@
+<script webc:setup>
+  // This goes stale and doesn't recompute every time
+  const impure = () => this.content.toUpperCase();
+  
+  // Since this is a pure function, it gets called with the right data every time
+  const pure = (str) => str.toUpperCase();
+</script>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" :content="eleventy.generator">
+    <title @html="this.title ? `@hasanhaja | ${this.title}` : '@hasanhaja'"></title>
+    
+    <style @raw="getBundle('css')" webc:keep></style>
+		<script @raw="getBundle('js')" webc:keep></script>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h2>Impure</h2>
+        <p @html="impure()"></p>
+      </section>
+      <section>
+        <h2>Pure</h2>
+        <p @html="pure(this.content)"></p>
+      </section>
+    </main>
+    <footer>
+      <p>
+        Copyright @hasanhaja 2023
+      </p>
+    </footer>
+  </body>
+</html>
